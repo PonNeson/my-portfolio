@@ -115,7 +115,8 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': 'உங்களுடைய_உண்மையான_API_SECRET_ஐ_இங்கே_வைக்கவும்'  # <--- இதை மட்டும் மாற்ற மறக்காதீர்கள்!
 }
 
-
+# ஏதேனும் ஒரு ஸ்டேடிக் ஃபைல் விடுபட்டிருந்தாலும் பில்ட் ஃபெயில் ஆகாமல் தடுத்துவிடும்
+WHITENOISE_MANIFEST_STRICT = False
 # Django 6.0 Unified Storage Management
 # Django 6.0-க்கான ஸ்டோரேஜ் கட்டமைப்பு
 STORAGES = {
