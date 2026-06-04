@@ -77,7 +77,7 @@
     <p>Java Developer | Django Enthusiast</p>
     <a href="/media/resume.pdf" class="github-btn" style="background: #e74c3c;" download>Download My Resume</a>
 </header> -->
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -277,6 +277,199 @@
         
     </div>
     
+    <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 30px 0;">
+    <p style="font-size: 0.8rem; opacity: 0.6;">&copy; 2026 Neson. Created with ❤️ in Django.</p>
+</footer>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neson | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    {% load static %} 
+    <style>
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 250px;       
+            object-fit: cover;    
+            border-radius: 8px 8px 0 0; 
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;    
+            max-width: 400px;    
+            margin: 20px auto;   
+        }             
+        
+        .project-content {
+            padding: 20px;       
+            text-align: left;    
+        }
+
+        .project-content h2 {
+            margin: 0 0 10px 0;  
+            font-size: 1.5rem;
+        }
+
+        .project-content p {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;    
+        }
+
+        .social-links {
+            margin: 20px 0;
+        }
+        
+        .social-btn {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin: 0 10px;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 20px;          
+            padding: 40px 20px;
+            max-width: 1200px;  
+            margin: 0 auto;     
+        }
+
+        @media (max-width: 1024px) {
+            .project-grid {
+                grid-template-columns: repeat(2, 1fr); 
+            }
+        }
+
+        @media (max-width: 600px) {
+            .project-grid {
+                grid-template-columns: 1fr; 
+            }
+        }
+        .social-btn:hover {
+            background: white;
+            color: #2c3e50;
+            transform: scale(1.1);
+        }
+        
+        body { font-family: 'Poppins', sans-serif; background-color: #f4f7f6; margin: 0; padding: 0; color: #333; }
+        header { background: #2c3e50; color: white; padding: 80px 20px; text-align: center; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-content">
+        <img src="{% static 'images/profile.jpg' %}" alt="Profile" class="profile-img">
+        
+        <h1>{{ profile.portfolio_title }}</h1>
+        <p>{{ profile.sub_title }}</p>
+
+        {% if profile.resume %}
+            <a href="{{ profile.resume.url }}" class="btn btn-primary" download>Download Resume</a>
+        {% endif %}
+        
+        <div class="social-links"></div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="project-grid">
+        {% for project in projects %}
+        <div class="project-card">
+            {% if project.image_name %}
+                <img src="{% static project.image_name %}" alt="{{ project.title }}">
+            {% else %}
+                <img src="{% static 'images/default-project.jpg' %}" alt="{{ project.title }}">
+            {% endif %}
+            
+            <div class="project-content">
+                <span class="tech-stack">{{ project.technology }}</span>
+                <h2>{{ project.title }}</h2>
+                <p>{{ project.description }}</p>
+                {% if project.github_link %}
+                    <a href="{{ project.github_link }}" class="github-btn" target="_blank">View GitHub</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<section id="contact" style="padding: 60px 20px; background: #fff; text-align: center;">
+    <h2>Get In Touch</h2>
+    <p>Feel free to reach out for any questions, collaborations, or opportunities.!</p>
+    
+    <div style="max-width: 600px; margin: 0 auto; text-align: left;">
+        <form method="POST">
+            {% csrf_token %}
+            <div style="margin-bottom: 15px;">
+                <label>Name</label>
+                <input type="text" name="name" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label>Email</label>
+                <input type="email" name="email" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label>Message</label>
+                <textarea name="message" rows="5" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;"></textarea>
+            </div>
+            <button type="submit" style="background: #2c3e50; color: white; padding: 10px 25px; border: none; border-radius: 5px; cursor: pointer;">Send Message</button>
+        </form>
+    </div>
+</section>
+
+<footer style="text-align: center; padding: 50px 20px; background: #2c3e50; color: white; margin-top: 50px;">
+    <div class="footer-content" style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px;">
+        <div>
+            <h3 style="color: #deff9a; margin-bottom: 15px;">Contact Me</h3>
+            <p style="margin: 5px 0;"><i class="fas fa-envelope"></i> {{ profile.email }}</p>
+            <p style="margin: 5px 0;"><i class="fas fa-phone"></i> {{ profile.phone }}</p>
+            <p style="margin: 5px 0;"><i class="fas fa-map-marker-alt"></i> {{ profile.location }}</p>
+        </div>
+        <div>
+            <h3 style="color: #deff9a; margin-bottom: 15px;">Quick Links</h3>
+            <a href="{{ profile.linkedin }}" style="color: white; text-decoration: none; display: block; margin-bottom: 5px;" target="_blank">LinkedIn</a>
+            <a href="{{ profile.github }}" style="color: white; text-decoration: none; display: block; margin-bottom: 5px;" target="_blank">GitHub</a>
+        </div>
+        <div>
+            <h3 style="color: #deff9a; margin-bottom: 15px;">About</h3>
+            <p style="font-size: 0.9rem; opacity: 0.8; line-height: 1.6;">{{ profile.about_me }}</p>
+        </div>
+    </div>
     <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 30px 0;">
     <p style="font-size: 0.8rem; opacity: 0.6;">&copy; 2026 Neson. Created with ❤️ in Django.</p>
 </footer>
