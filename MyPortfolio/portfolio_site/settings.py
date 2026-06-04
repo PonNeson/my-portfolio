@@ -114,18 +114,19 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': 'உங்களுடைய_உண்மையான_API_SECRET_ஐ_இங்கே_வைக்கவும்' # <--- இதை கண்டிப்பாக மாற்றவும்!
 }
 
-# 1. புதிய Django 6 வெர்ஷனுக்கான ஸ்டோரேஜ் செட்டப்
+# Django 6.0-க்கான ஸ்டோரேஜ் கட்டமைப்பு
 STORAGES = {
     "default": {
         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
     },
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        # ⭐️ இதில் 'ManifestStaticFilesStorage'-க்கு பதிலாக கீழே உள்ளவாறு 'Storage' என்று மட்டும் மாற்றவும்:
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
     },
 }
 
-# 2. பழைய cloudinary_storage லைப்ரரி தேடும் வேரியபிள் (Render எரர் வராமல் தடுக்க இதுதான் முக்கியம்)
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# ⭐️ இந்த வரியையும் கீழே உள்ளவாறு மாற்றிடுங்கள்:
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 MEDIA_URL = '/media/'
