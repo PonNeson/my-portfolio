@@ -112,7 +112,7 @@ STATICFILES_DIRS = [
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'dkoz3k7gp',
     'API_KEY': '568195923992155',
-    'API_SECRET': 'உங்களுடைய_உண்மையான_API_SECRET_ஐ_இங்கே_வைக்கவும்'  # <--- இதை மட்டும் மாற்ற மறக்காதீர்கள்!
+    'API_SECRET': 'i5xCtubrqsGYwXdG0NBdcJMvRWU'
 }
 
 # ஏதேனும் ஒரு ஸ்டேடிக் ஃபைல் விடுபட்டிருந்தாலும் பில்ட் ஃபெயில் ஆகாமல் தடுத்துவிடும்
