@@ -8,9 +8,6 @@ import os
 from pathlib import Path
 import dj_database_url
 from PIL import Image
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -114,10 +111,10 @@ STATICFILES_DIRS = [
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'dkoz3k7gp',
     'API_KEY': '568195923992155',
-    'API_SECRET': 'i5xCtubrqsGYwXdG0NBdcJMvRWU' 
+    'API_SECRET': 'உங்களுடைய_உண்மையான_API_SECRET_ஐ_இங்கே_வைக்கவும்' # <--- இதை கண்டிப்பாக மாற்றவும்!
 }
 
-# Django 4.2 மற்றும் Django 6.0-க்கான புதிய ஸ்டோரேஜ் கட்டமைப்பு
+# 1. புதிய Django 6 வெர்ஷனுக்கான ஸ்டோரேஜ் செட்டப்
 STORAGES = {
     "default": {
         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
@@ -126,6 +123,10 @@ STORAGES = {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
+
+# 2. பழைய cloudinary_storage லைப்ரரி தேடும் வேரியபிள் (Render எரர் வராமல் தடுக்க இதுதான் முக்கியம்)
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 MEDIA_URL = '/media/'
 
