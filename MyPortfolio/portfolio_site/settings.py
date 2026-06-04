@@ -66,7 +66,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'portfolio_site.wsgi.application'
 
 
-# Database
+# Database Configuration
 DATABASES = {
     'default': dj_database_url.config(
         default='postgresql://portfolio_db_gw3r_user:NM0b5lVhcxnh7zvo9cuXyqukHU8WDwtT@dpg-d809s2po3t8c73dir0q0-a.virginia-postgres.render.com/portfolio_db_gw3r',
@@ -99,7 +99,7 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
+# Static Files Configuration (CSS, JavaScript)
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
@@ -107,29 +107,30 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-# Cloudinary Storage Configuration
+
+# Cloudinary Credentials Configuration
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'dkoz3k7gp',
     'API_KEY': '568195923992155',
-    'API_SECRET': 'உங்களுடைய_உண்மையான_API_SECRET_ஐ_இங்கே_வைக்கவும்' # <--- இதை கண்டிப்பாக மாற்றவும்!
+    'API_SECRET': 'உங்களுடைய_உண்மையான_API_SECRET_ஐ_இங்கே_வைக்கவும்'  # <--- இதை மட்டும் மாற்ற மறக்காதீர்கள்!
 }
 
-# Django 6.0-க்கான ஸ்டோரேஜ் கட்டமைப்பு
+
+# Django 6.0 Unified Storage Management
 STORAGES = {
+    # மீடியா அப்லோடுகள் (Images & Resume) நேராக Cloudinary-க்கு செல்லும்
     "default": {
         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
     },
+    # ஸ்டேடிக் ஃபைல்கள் (CSS, JS) எரர் இல்லாமல் WhiteNoise மூலம் கம்ப்ரெஸ் ஆகும்
     "staticfiles": {
-        # ⭐️ இதில் 'ManifestStaticFilesStorage'-க்கு பதிலாக கீழே உள்ளவாறு 'Storage' என்று மட்டும் மாற்றவும்:
         "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
     },
 }
 
-# ⭐️ இந்த வரியையும் கீழே உள்ளவாறு மாற்றிடுங்கள்:
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
 MEDIA_URL = '/media/'
 
+
+# Miscellaneous Settings
 IMAGE_CROPPING_JQUERY_URL = None
 Image.MAX_IMAGE_PIXELS = None
