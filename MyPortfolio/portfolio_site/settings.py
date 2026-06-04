@@ -117,16 +117,21 @@ CLOUDINARY_STORAGE = {
 
 
 # Django 6.0 Unified Storage Management
+# Django 6.0-க்கான ஸ்டோரேஜ் கட்டமைப்பு
 STORAGES = {
-    # மீடியா அப்லோடுகள் (Images & Resume) நேராக Cloudinary-க்கு செல்லும்
+    # மீடியா ஃபைல்கள் Cloudinary-க்கு செல்லும்
     "default": {
         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
     },
-    # ஸ்டேடிக் ஃபைல்கள் (CSS, JS) எரர் இல்லாமல் WhiteNoise மூலம் கம்ப்ரெஸ் ஆகும்
+    # ஸ்டேடிக் ஃபைல்கள் (CSS, JS) WhiteNoise மூலம் கம்ப்ரெஸ் ஆகும்
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
     },
 }
+
+# ⭐️ இந்த 2 வரிகளை கண்டிப்பாக கீழே சேர்த்துவிடுங்கள் (இதுதான் அந்த எரரைத் தடுக்கும்!)
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 MEDIA_URL = '/media/'
 
