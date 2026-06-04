@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'cloudinary_storage', 
     'django.contrib.staticfiles',
+    'cloudinary',
     'projects',
 
 ]
@@ -145,9 +147,17 @@ STATICFILES_DIRS = [
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# Media files
+
+# Cloudinary Storage Configuration
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'உங்களது_cloud_name_இங்கே_கொடுக்கவும்',
+    'API_KEY': 'உங்களது_api_key_இங்கே_கொடுக்கவும்',
+    'API_SECRET': 'உங்களது_api_secret_இங்கே_கொடுக்கவும்'
+}
+
+# Media files config
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # settings.py-ன் கடைசியில் போடுங்க
 IMAGE_CROPPING_JQUERY_URL = None
