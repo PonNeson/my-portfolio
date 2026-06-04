@@ -150,9 +150,9 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Cloudinary Storage Configuration
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'உங்களது_cloud_name_இங்கே_கொடுக்கவும்',
-    'API_KEY': 'உங்களது_api_key_இங்கே_கொடுக்கவும்',
-    'API_SECRET': 'உங்களது_api_secret_இங்கே_கொடுக்கவும்'
+    'CLOUD_NAME': 'dkoz3k7gp',
+    'API_KEY': '568195923992155',
+    'API_SECRET': '*********************************'
 }
 
 # Media files config
