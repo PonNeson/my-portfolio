@@ -67,12 +67,7 @@ class Profile(models.Model):
     sub_title = models.CharField(max_length=200, default="Java Developer | Django Enthusiast")
     linkedin = models.URLField(blank=True)
     github = models.URLField(blank=True)
-    resume = CloudinaryField(
-            'raw', 
-            folder='resumes/', 
-            blank=True, 
-            null=True
-        )
+    resume = models.FileField(upload_to='resumes/', blank=True, null=True)
     def __str__(self):
         return self.name
 
