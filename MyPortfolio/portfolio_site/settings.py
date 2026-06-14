@@ -71,12 +71,16 @@ WSGI_APPLICATION = 'portfolio_site.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        # லிங்க் கடைசியில் ?sslmode=disable என்று மாற்றியிருக்கிறேன்:
-        default='postgresql://portfolio_db_gw3r_user:NM0b5lVhcxnh7zvo9cuXyqukHU8WDwtT@dpg-d809s2po3t8c73dir0q0-a.virginia-postgres.render.com/portfolio_db_gw3r?sslmode=disable',
+        # லிங்க் கடைசியில் ?sslmode=require என்று மாற்றியிருக்கிறோம்:
+        default='postgresql://portfolio_db_gw3r_user:NM0b5lVhcxnh7zvo9cuXyqukHU8WDwtT@dpg-d809s2po3t8c73dir0q0-a.virginia-postgres.render.com/portfolio_db_gw3r?sslmode=require',
         conn_max_age=600
     )
 }
-DATABASES['default']['OPTIONS'] = {'sslmode': 'disable'}
+
+# ஜாங்கோ போஸ்ட்கிரெஸ் டிரைவருக்கு ஸ்ட்ரிக்ட்டா SSL மோடை செட் செய்கிறோம்
+DATABASES['default']['OPTIONS'] = {
+    'sslmode': 'require',
+}
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {
