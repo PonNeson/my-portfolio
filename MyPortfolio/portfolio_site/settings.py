@@ -76,6 +76,7 @@ DATABASES = {
         conn_max_age=600
     )
 }
+DATABASES['default']['OPTIONS'] = {'sslmode': 'disable'}
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {
