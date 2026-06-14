@@ -76,15 +76,15 @@ import dj_database_url
 
 DATABASES = {
     'default': dj_database_url.config(
-        # இங்கு வழக்கம் போல require என்றே இருக்கட்டும்
-        default='postgresql://portfolio_db_gw3r_user:NM0b5lVhcxnh7zvo9cuXyqukHU8WDwtT@dpg-d809s2po3t8c73dir0q0-a.virginia-postgres.render.com/portfolio_db_gw3r?sslmode=require',
+        # Render-ன் பொதுவான டேட்டாபேஸ் URL
+        default='postgresql://portfolio_db_gw3r_user:NM0b5lVhcxnh7zvo9cuXyqukHU8WDwtT@dpg-d809s2po3t8c73dir0q0-a.virginia-postgres.render.com/portfolio_db_gw3r',
         conn_max_age=600
     )
 }
 
-# இதுதான் ரகசியம்: Render-க்குத் தேவையான துல்லியமான SSL கட்டமைப்பு
+# ஜாங்கோ 6 மற்றும் psycopg2-க்கான சரியான கிரிப்டோகிராஃபி ஆப்ஷன்
 DATABASES['default']['OPTIONS'] = {
-    'sslmode': 'require',
+    'sslmode': 'prefer',  # இது முதலில் SSL ட்ரை பண்ணும், சான்றிதழ் குளறுபடி இருந்தால் கனெக்ஷனை கட் செய்யாமல் இணைத்துவிடும்!
 }
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
