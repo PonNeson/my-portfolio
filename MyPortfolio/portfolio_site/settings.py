@@ -71,16 +71,20 @@ WSGI_APPLICATION = 'portfolio_site.wsgi.application'
 
 # settings.py
 
+# settings.py
+import dj_database_url
+
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgresql://portfolio_db_gw3r_user:NM0b5lVhcxnh7zvo9cuXyqukHU8WDwtT@dpg-d809s2po3t8c73dir0q0-a.virginia-postgres.render.com/portfolio_db_gw3r',
+        # இங்கு வழக்கம் போல require என்றே இருக்கட்டும்
+        default='postgresql://portfolio_db_gw3r_user:NM0b5lVhcxnh7zvo9cuXyqukHU8WDwtT@dpg-d809s2po3t8c73dir0q0-a.virginia-postgres.render.com/portfolio_db_gw3r?sslmode=require',
         conn_max_age=600
     )
 }
 
-# ஜாங்கோவுக்குத் தேவையான ஸ்ட்ரிக்ட் போஸ்ட்கிரெஸ் ஆப்ஷன்ஸ்
+# இதுதான் ரகசியம்: Render-க்குத் தேவையான துல்லியமான SSL கட்டமைப்பு
 DATABASES['default']['OPTIONS'] = {
-    'sslmode': 'no-verify',
+    'sslmode': 'require',
 }
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
