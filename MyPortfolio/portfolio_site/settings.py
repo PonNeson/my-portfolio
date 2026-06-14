@@ -67,10 +67,12 @@ WSGI_APPLICATION = 'portfolio_site.wsgi.application'
 
 
 # Database Configuration
+# settings.py
+
 DATABASES = {
     'default': dj_database_url.config(
-        # require-க்கு பதிலா prefer என்று மாத்தியிருக்கிறேன்
-        default='postgresql://portfolio_db_gw3r_user:NM0b5lVhcxnh7zvo9cuXyqukHU8WDwtT@dpg-d809s2po3t8c73dir0q0-a.virginia-postgres.render.com/portfolio_db_gw3r?sslmode=prefer',
+        # லிங்க் கடைசியில் ?sslmode=disable என்று மாற்றியிருக்கிறேன்:
+        default='postgresql://portfolio_db_gw3r_user:NM0b5lVhcxnh7zvo9cuXyqukHU8WDwtT@dpg-d809s2po3t8c73dir0q0-a.virginia-postgres.render.com/portfolio_db_gw3r?sslmode=disable',
         conn_max_age=600
     )
 }
